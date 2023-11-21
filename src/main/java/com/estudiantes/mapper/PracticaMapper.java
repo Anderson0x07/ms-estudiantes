@@ -1,8 +1,6 @@
 package com.estudiantes.mapper;
 
 import com.estudiantes.dto.PracticaDto;
-import com.estudiantes.dto.PracticaDto;
-import com.estudiantes.entity.Practica;
 import com.estudiantes.entity.Practica;
 import org.mapstruct.*;
 

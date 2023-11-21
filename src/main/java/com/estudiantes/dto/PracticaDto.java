@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -15,8 +15,8 @@ public class PracticaDto {
     private String entrada;
     private String resultado;
     private String ip;
-    private LocalDateTime fecha;
+    private Date fecha;
     private boolean estado;
-    private int idEjercicio;
+    private EjercicioDto ejercicio;
     private boolean esFinal;
 }

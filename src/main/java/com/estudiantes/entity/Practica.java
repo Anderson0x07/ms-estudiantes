@@ -5,7 +5,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Data
@@ -16,7 +16,7 @@ public class Practica implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private Long idUsuario;
+    private int idUsuario;
 
     private String entrada;
 
@@ -24,7 +24,9 @@ public class Practica implements Serializable {
 
     private String ip;
 
-    private LocalDateTime fecha;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fecha;
 
     private boolean estado;
 

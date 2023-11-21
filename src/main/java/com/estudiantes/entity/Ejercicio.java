@@ -30,7 +30,7 @@ public class Ejercicio implements Serializable {
 
     private boolean estado;
 
-    private Long idProblema;
+    private int idProblema;
 
     @JsonIgnoreProperties("ejercicio")
     @OneToMany(mappedBy = "ejercicio", cascade = CascadeType.ALL, orphanRemoval = true)

@@ -12,7 +12,7 @@ import java.util.Date;
 public class OpcionDto {
     private int id;
     private Date fecha;
-    private int idEjercicio;
+    private EjercicioDto ejercicio;
     private int idExamen;
     private int idUsuario;
 }

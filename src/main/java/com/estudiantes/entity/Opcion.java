@@ -24,8 +24,8 @@ public class Opcion implements Serializable {
     @JoinColumn(name = "ejercicio")
     private Ejercicio ejercicio;
 
-    private Long idExamen;
+    private int idExamen;
 
-    private Long idUsuario;
+    private int idUsuario;
 
 }
