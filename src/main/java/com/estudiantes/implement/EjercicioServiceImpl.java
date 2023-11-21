@@ -7,6 +7,7 @@ import com.estudiantes.repository.EjercicioRepository;
 import com.estudiantes.service.EjercicioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,9 @@ public class EjercicioServiceImpl implements EjercicioService {
     @Autowired
     private EjercicioMapper ejercicioMapper;
 
+    @Autowired
+    private RestTemplate restTemplate; //Para la comunicación con otros MS
+
     @Override
     public List<EjercicioDto> obtenerEjercicios() {
         List<Ejercicio> ejercicios = ejercicioRepository.findAll();
@@ -32,8 +36,6 @@ public class EjercicioServiceImpl implements EjercicioService {
 
     @Override
     public EjercicioDto obtenerEjercicio(int id) {
-        //Ejercicio ejercicio = ejercicioRepository.findById(id).get();
-        //return ejercicioMapper.toDto(ejercicio);
         Optional<Ejercicio> optionalEjercicio = ejercicioRepository.findById(id);
 
         if (optionalEjercicio.isPresent()) {
@@ -54,12 +56,6 @@ public class EjercicioServiceImpl implements EjercicioService {
             throw new RuntimeException("El ejercicio ya existe");
         }
         return ejercicioMapper.toDto(savedEjercicio);
-
-        /* TODO: Puede ser asi tambien
-        Ejercicio ejercicio = ejercicioMapper.toEntity(ejercicioDto);
-        Ejercicio savedEjercicio = ejercicioRepository.save(ejercicio);
-        return ejercicioMapper.toDto(savedEjercicio);
-        */
     }
 
     @Override

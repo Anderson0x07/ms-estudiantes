@@ -1,13 +1,14 @@
 package com.estudiantes.implement;
 
 import com.estudiantes.dto.PracticaDto;
-import com.estudiantes.entity.Ejercicio;
+import com.estudiantes.dto.ProblemasResueltosDto;
 import com.estudiantes.entity.Practica;
 import com.estudiantes.mapper.PracticaMapper;
 import com.estudiantes.repository.PracticaRepository;
 import com.estudiantes.service.PracticaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +21,9 @@ public class PracticaServiceImpl implements PracticaService {
 
     @Autowired
     private PracticaMapper practicaMapper;
+
+    @Autowired
+    private RestTemplate restTemplate; //Para la comunicación con otros MS
 
     @Override
     public List<PracticaDto> obtenerPracticas() {
@@ -44,13 +48,6 @@ public class PracticaServiceImpl implements PracticaService {
             savedPractica = practicaRepository.save(practica);
         }
         return practicaMapper.toDto(savedPractica);
-
-        /* TODO: Puede ser asi tambien
-        Practica practica = practicaMapper.toEntity(practicaDto);
-        Practica savedPractica = practicaRepository.save(practica);
-        return practicaMapper.toDto(savedPractica);
-        */
-
     }
 
     @Override
@@ -74,5 +71,13 @@ public class PracticaServiceImpl implements PracticaService {
         }
 
         return rta;
+    }
+
+    @Override
+    public List<ProblemasResueltosDto> obtenerNumProblemasResueltosByStudents() {
+
+        List<ProblemasResueltosDto> problemasResueltosDtos = practicaRepository.findProblemasResueltos();
+
+        return null;
     }
 }

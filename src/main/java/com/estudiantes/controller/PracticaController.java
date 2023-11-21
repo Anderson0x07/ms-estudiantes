@@ -52,4 +52,10 @@ public class PracticaController {
         }
         return new ResponseEntity<>("La practica no existe", HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("resueltos-ordenados")
+    public ResponseEntity<?> getNumProblemasResueltosByStudents(){
+        return new ResponseEntity<>(practicaService.obtenerNumProblemasResueltosByStudents(), HttpStatus.OK);
+
+    }
 }

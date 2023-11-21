@@ -1,17 +1,13 @@
 package com.estudiantes.implement;
 
-import com.estudiantes.dto.EjercicioDto;
 import com.estudiantes.dto.OpcionDto;
-import com.estudiantes.entity.Ejercicio;
 import com.estudiantes.entity.Opcion;
-import com.estudiantes.mapper.EjercicioMapper;
 import com.estudiantes.mapper.OpcionMapper;
-import com.estudiantes.repository.EjercicioRepository;
 import com.estudiantes.repository.OpcionRepository;
-import com.estudiantes.service.EjercicioService;
 import com.estudiantes.service.OpcionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,13 +19,11 @@ public class OpcionServiceImpl implements OpcionService {
     private OpcionRepository opcionRepository;
 
     @Autowired
-    private EjercicioService ejercicioService;
-
-    @Autowired
     private OpcionMapper opcionMapper;
 
     @Autowired
-    private EjercicioMapper ejercicioMapper;
+    private RestTemplate restTemplate; //Para la comunicación con otros MS
+
 
     @Override
     public List<OpcionDto> obtenerOpciones() {
@@ -48,16 +42,8 @@ public class OpcionServiceImpl implements OpcionService {
     @Override
     public OpcionDto guardarOpcion(OpcionDto opcionDto) {
         Opcion opcion = opcionMapper.toEntity(opcionDto);
-
-        //EjercicioDto ejercicioDto = ejercicioService.obtenerEjercicio(opcionDto.getIdEjercicio());
-        //Ejercicio ejercicio = ejercicioMapper.toEntity(ejercicioDto);
-        //System.out.println("ejercicio:" + ejercicio);
-        //opcion.setEjercicio(ejercicio);
-        //System.out.println("opcion"+ opcion);
-
         Opcion savedOpcion = opcionRepository.save(opcion);
         return opcionMapper.toDto(savedOpcion);
-
     }
 
     @Override

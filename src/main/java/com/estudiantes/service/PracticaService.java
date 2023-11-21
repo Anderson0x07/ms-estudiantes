@@ -1,6 +1,7 @@
 package com.estudiantes.service;
 
 import com.estudiantes.dto.PracticaDto;
+import com.estudiantes.dto.ProblemasResueltosDto;
 import com.estudiantes.entity.Practica;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,4 +20,6 @@ public interface PracticaService {
     public PracticaDto editarPractica(int id, PracticaDto practicaDto);
 
     public boolean eliminarPractica(int id);
+
+    public List<ProblemasResueltosDto> obtenerNumProblemasResueltosByStudents();
 }
