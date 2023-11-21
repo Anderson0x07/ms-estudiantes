@@ -2,6 +2,7 @@ package com.estudiantes.implement;
 
 import com.estudiantes.dto.PracticaDto;
 import com.estudiantes.dto.ProblemasResueltosDto;
+import com.estudiantes.dto.ProblemasResueltosProjection;
 import com.estudiantes.entity.Practica;
 import com.estudiantes.mapper.PracticaMapper;
 import com.estudiantes.repository.PracticaRepository;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -76,8 +78,14 @@ public class PracticaServiceImpl implements PracticaService {
     @Override
     public List<ProblemasResueltosDto> obtenerNumProblemasResueltosByStudents() {
 
-        List<ProblemasResueltosDto> problemasResueltosDtos = practicaRepository.findProblemasResueltos();
+        List<ProblemasResueltosProjection> projections = practicaRepository.findProblemasResueltos();
+        List<ProblemasResueltosDto> problemasResueltosDtos = new ArrayList<>();
 
-        return null;
+        for (ProblemasResueltosProjection projection : projections) {
+            ProblemasResueltosDto dto = new ProblemasResueltosDto(projection.getIdUsuario(), projection.getCantidadResueltos());
+            problemasResueltosDtos.add(dto);
+        }
+
+        return problemasResueltosDtos;
     }
 }

@@ -55,6 +55,7 @@ public class PracticaController {
 
     @GetMapping("resueltos-ordenados")
     public ResponseEntity<?> getNumProblemasResueltosByStudents(){
+        System.out.println("controller");
         return new ResponseEntity<>(practicaService.obtenerNumProblemasResueltosByStudents(), HttpStatus.OK);
 
     }
