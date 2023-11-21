@@ -1,6 +1,8 @@
 package com.estudiantes.mapper;
 
 import com.estudiantes.dto.OpcionDto;
+import com.estudiantes.dto.OpcionDto;
+import com.estudiantes.entity.Ejercicio;
 import com.estudiantes.entity.Opcion;
 import org.mapstruct.*;
 

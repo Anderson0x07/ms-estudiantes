@@ -12,11 +12,11 @@ public interface PracticaService {
 
     public List<PracticaDto> obtenerPracticas();
 
-    public PracticaDto obtenerPractica(Long id);
+    public PracticaDto obtenerPractica(int id);
 
     public PracticaDto guardarPractica(PracticaDto practicaDto);
 
-    public PracticaDto editarPractica(Long id, PracticaDto practicaDto);
+    public PracticaDto editarPractica(int id, PracticaDto practicaDto);
 
-    public boolean eliminarPractica(Long id);
+    public boolean eliminarPractica(int id);
 }

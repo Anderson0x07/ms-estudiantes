@@ -1,16 +1,20 @@
 package com.estudiantes.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Data
 @Table(name = "ejercicio")
-public class Ejercicio {
+public class Ejercicio implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     private String descripcion;
 
@@ -27,4 +31,8 @@ public class Ejercicio {
     private boolean estado;
 
     private Long idProblema;
+
+    @JsonIgnoreProperties("ejercicio")
+    @OneToMany(mappedBy = "ejercicio", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Opcion> opciones;
 }

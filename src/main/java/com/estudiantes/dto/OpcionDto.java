@@ -1,14 +1,18 @@
 package com.estudiantes.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class OpcionDto {
-    private Long id;
+    private int id;
     private Date fecha;
-    private Long idEjercicio;
-    private Long idExamen;
-    private Long idUsuario;
+    private int idEjercicio;
+    private int idExamen;
+    private int idUsuario;
 }

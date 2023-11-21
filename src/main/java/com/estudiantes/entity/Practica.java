@@ -2,17 +2,19 @@ package com.estudiantes.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Data
 @Table(name = "practica")
-public class Practica {
+public class Practica implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     private Long idUsuario;
 
@@ -26,7 +28,9 @@ public class Practica {
 
     private boolean estado;
 
-    private Long idEjercicio;
+    @ManyToOne
+    @JoinColumn(name = "ejercicio")
+    private Ejercicio ejercicio;
 
     private boolean esFinal;
 }

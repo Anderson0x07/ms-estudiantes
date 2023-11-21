@@ -1,7 +1,6 @@
 package com.estudiantes.service;
 
 import com.estudiantes.dto.OpcionDto;
-import com.estudiantes.entity.Opcion;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,11 +10,11 @@ public interface OpcionService {
 
     public List<OpcionDto> obtenerOpciones();
 
-    public OpcionDto obtenerOpcion(Long id);
+    public OpcionDto obtenerOpcion(int id);
 
     public OpcionDto guardarOpcion(OpcionDto opcionDto);
 
-    public OpcionDto editarOpcion(Long id, OpcionDto opcionDto);
+    public OpcionDto editarOpcion(int id, OpcionDto opcionDto);
 
-    public boolean eliminarOpcion(Long id);
+    public boolean eliminarOpcion(int id);
 }

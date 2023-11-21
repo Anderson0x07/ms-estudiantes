@@ -1,6 +1,7 @@
 package com.estudiantes.implement;
 
 import com.estudiantes.dto.PracticaDto;
+import com.estudiantes.entity.Ejercicio;
 import com.estudiantes.entity.Practica;
 import com.estudiantes.mapper.PracticaMapper;
 import com.estudiantes.repository.PracticaRepository;
@@ -29,7 +30,7 @@ public class PracticaServiceImpl implements PracticaService {
     }
 
     @Override
-    public PracticaDto obtenerPractica(Long id) {
+    public PracticaDto obtenerPractica(int id) {
         Practica practica = practicaRepository.findById(id).get();
         return practicaMapper.toDto(practica);
     }
@@ -53,7 +54,7 @@ public class PracticaServiceImpl implements PracticaService {
     }
 
     @Override
-    public PracticaDto editarPractica(Long id, PracticaDto practicaDto) {
+    public PracticaDto editarPractica(int id, PracticaDto practicaDto) {
         Practica practicaFound = practicaRepository.findById(id).get();
 
         practicaMapper.updateEntity(practicaDto,practicaFound);
@@ -63,7 +64,7 @@ public class PracticaServiceImpl implements PracticaService {
     }
 
     @Override
-    public boolean eliminarPractica(Long id) {
+    public boolean eliminarPractica(int id) {
 
         boolean rta = false;
 

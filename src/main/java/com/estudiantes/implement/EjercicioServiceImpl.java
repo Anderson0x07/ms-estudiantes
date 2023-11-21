@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,13 +31,21 @@ public class EjercicioServiceImpl implements EjercicioService {
     }
 
     @Override
-    public EjercicioDto obtenerEjercicio(Long id) {
-        Ejercicio ejercicio = ejercicioRepository.findById(id).get();
-        return ejercicioMapper.toDto(ejercicio);
+    public EjercicioDto obtenerEjercicio(int id) {
+        //Ejercicio ejercicio = ejercicioRepository.findById(id).get();
+        //return ejercicioMapper.toDto(ejercicio);
+        Optional<Ejercicio> optionalEjercicio = ejercicioRepository.findById(id);
+
+        if (optionalEjercicio.isPresent()) {
+            Ejercicio ejercicio = optionalEjercicio.get();
+            return ejercicioMapper.toDto(ejercicio);
+        }
+        else return null;
+
     }
 
     @Override
-    public EjercicioDto guardar(EjercicioDto ejercicioDto) {
+    public EjercicioDto guardarEjercicio(EjercicioDto ejercicioDto) {
         Ejercicio ejercicio = ejercicioMapper.toEntity(ejercicioDto);
         Ejercicio savedEjercicio = null;
         if (ejercicioRepository.findById(ejercicio.getId()).isEmpty()) {
@@ -54,7 +63,7 @@ public class EjercicioServiceImpl implements EjercicioService {
     }
 
     @Override
-    public EjercicioDto editarEjercicio(Long id, EjercicioDto ejercicioDto) {
+    public EjercicioDto editarEjercicio(int id, EjercicioDto ejercicioDto) {
         Ejercicio ejercicioFound = ejercicioRepository.findById(id).get();
         ejercicioMapper.updateEntity(ejercicioDto, ejercicioFound);
         Ejercicio savedEjercicio = ejercicioRepository.save(ejercicioFound);
@@ -62,7 +71,7 @@ public class EjercicioServiceImpl implements EjercicioService {
     }
 
     @Override
-    public boolean eliminarEjercicio(Long id) {
+    public boolean eliminarEjercicio(int id) {
         if (ejercicioRepository.findById(id).isEmpty()){
             return false;
         }
